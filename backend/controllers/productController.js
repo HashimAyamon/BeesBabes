@@ -32,22 +32,25 @@ export const getProduct = async (req, res) => {
 };
 
 export const createProduct = async (req, res) => {
-  const { name, description, price } = req.body;
+  const { name, price, image } = req.body; 
 
   if (!name || !price || !image) {
     return res
       .status(400)
       .json({ success: false, message: "All Fields Are Required" });
   }
-  try {
-    const newProduct = await sql`INSERT INTO products (name, price, image)
-        VALUES (${name}, ${description}, ${price}, ${image})
-        RETURNING *`;
-    console.log("new product added", newProduct);
 
+  try {
+    const newProduct = await sql`
+      INSERT INTO products (name, price, image)
+      VALUES (${name}, ${price}, ${image})
+      RETURNING *;
+    `;
+
+    console.log("New product added:", newProduct);
     res.status(201).json({ success: true, data: newProduct[0] });
   } catch (error) {
-    console.log("error in create a new product", error);
+    console.log("Error in creating a new product:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
@@ -81,21 +84,21 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-    const { id } = req.params;
-    
-    try {
-        const deletedProduct = await sql`DELETE FROM products WHERE id = ${id}
+  const { id } = req.params;
+
+  try {
+    const deletedProduct = await sql`DELETE FROM products WHERE id = ${id}
             RETURNING *`;
-        if (deletedProduct.length === 0) {
-        return res
-            .status(404)
-            .json({ success: false, message: "Product Not Found" });
-        }
-        console.log("deleted product", deletedProduct);
-    
-        res.status(200).json({ success: true, data: deletedProduct[0] });
-    } catch (error) {
-        console.log("error in deleting product", error);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
+    if (deletedProduct.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Product Not Found" });
     }
+    console.log("deleted product", deletedProduct);
+
+    res.status(200).json({ success: true, data: deletedProduct[0] });
+  } catch (error) {
+    console.log("error in deleting product", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 };

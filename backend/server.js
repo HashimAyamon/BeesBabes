@@ -8,17 +8,15 @@ import { sql } from './config/db.js';
 
 
 dotenv.config();
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(express.json());
-app.use(helmet());     //for security
-app.use(cors());     //for security
-app.use(morgan("dev"));   //to get consol log the requests
+app.use(helmet()); //for security
+app.use(cors()); //for security
+app.use(morgan("dev")); //to get consol log the requests
 
-
-app.use("/api/products" ,productRoutes);
-
+app.use("/api/products", productRoutes);
 
 async function initDB(){
   try {
@@ -44,6 +42,8 @@ async function initDB(){
 initDB().then(()=>{
   
 app.listen(PORT, () => {
-  console.log('Server is running on port ' + PORT);
+  console.log("Server is running on port " + PORT);
 });
+
 })
+

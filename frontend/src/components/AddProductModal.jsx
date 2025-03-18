@@ -103,7 +103,9 @@ function AddProductModal() {
             <button
               type="button"
               className="btn btn-ghost"
-              onClick={() => document.getElementById("add_product_modal").close()}
+              onClick={() =>
+                document.getElementById("add_product_modal").close()
+              }
             >
               Cancel
             </button>

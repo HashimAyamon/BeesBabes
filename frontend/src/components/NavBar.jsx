@@ -1,6 +1,6 @@
 import { Link, useResolvedPath } from "react-router-dom";
-import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
-import ThemeSelector from "./ThemeSelector";
+import { ShoppingBagIcon } from "lucide-react";
+import { GiBee } from "react-icons/gi";
 import { useProductStore } from "../store/useProductStore";
 
 function Navbar() {
@@ -17,7 +17,7 @@ function Navbar() {
           <div className="flex-1 lg:flex-none">
             <Link to="/" className="hover:opacity-80 transition-opacity">
               <div className="flex items-center gap-2">
-                <ShoppingCartIcon className="size-9 text-primary" />
+              <GiBee className="size-9 text-pink-500" />
                 <span
                   className="font-semibold font-mono tracking-widest text-2xl 
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
@@ -26,22 +26,6 @@ function Navbar() {
                 </span>
               </div>
             </Link>
-          </div>
-
-          {/* RIGHT SECTION */}
-          <div className="flex items-center gap-4">
-            <ThemeSelector />
-
-            {isHomePage && (
-              <div className="indicator">
-                <div className="p-2 rounded-full hover:bg-base-200 transition-colors">
-                  <ShoppingBagIcon className="size-5" />
-                  <span className="badge badge-sm badge-primary indicator-item">
-                    {products.length}
-                  </span>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

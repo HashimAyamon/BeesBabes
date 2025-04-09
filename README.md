@@ -1,6 +1,6 @@
 # 🐝 BeesBabes - Kids' Product Management Platform
 <p align="center">
-  <img src="frontend/public/logo.png" alt="BeesBabes Logo" width="200" />
+  <img src="frontend/public/logo.png" alt="BeesBabes Logo" width="220" />
 </p>
 
 

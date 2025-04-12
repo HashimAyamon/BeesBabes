@@ -16,7 +16,6 @@
 - **Express.js** powered backend
 
 ---
-
 ## 🛠️ Tech Stack
 
 | Layer       | Technology              |
